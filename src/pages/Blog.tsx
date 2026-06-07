@@ -22,6 +22,7 @@ export function Blog() {
             <ContentEntry
               key={post.id}
               id={post.id}
+              to={`/blogs/${post.id}`}
               title={post.title}
               date={post.date}
               description={post.description}

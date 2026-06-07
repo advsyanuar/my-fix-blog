@@ -184,3 +184,60 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #00EEFF;
 }
+
+.content-viewer h2 {
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #00eeff;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: 4px solid #00eeff;
+  scroll-margin-top: 80px;
+}
+
+.content-viewer h2:not(:first-child) {
+  margin-top: 48px;
+}
+
+.content-viewer p {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #b9c9cb;
+  margin-bottom: 24px;
+}
+
+.content-viewer p:first-of-type {
+  font-size: 16px;
+  color: #cde5fe;
+}
+
+.content-viewer blockquote {
+  background: #031d30;
+  border-left: 4px solid #d7fbff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.content-viewer blockquote p {
+  font-size: 16px;
+  color: #d7fbff;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .content-viewer h2 {
+    font-size: 20px;
+  }
+  .content-viewer p {
+    font-size: 12px;
+  }
+  .content-viewer p:first-of-type {
+    font-size: 14px;
+  }
+}

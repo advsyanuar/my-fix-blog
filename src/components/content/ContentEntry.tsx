@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Tag } from '../common/Tag';
 
 interface ContentEntryProps {
@@ -6,11 +7,16 @@ interface ContentEntryProps {
   date?: string;
   description: string;
   tags: string[];
+  to?: string;
 }
 
-export function ContentEntry({ id, title, date, description, tags }: ContentEntryProps) {
+export function ContentEntry({ id, title, date, description, tags, to }: ContentEntryProps) {
+  const navigate = useNavigate();
+
   return (
-    <article className="group p-margin-lg max-md:p-margin-md flex flex-col gap-margin-sm hover:bg-surface-container transition-all cursor-pointer relative overflow-hidden">
+    <article
+      onClick={() => to && navigate(to)}
+      className="group p-margin-lg max-md:p-margin-md flex flex-col gap-margin-sm hover:bg-surface-container transition-all cursor-pointer relative overflow-hidden">
       <div className="absolute top-0 right-0 p-unit font-label-sm text-label-sm text-secondary-container opacity-50">
         {id}
       </div>

@@ -27,6 +27,7 @@ export interface BlogEntry {
   title: string;
   date: string;
   description: string;
+  content: string;
   tags: string[];
 }
 

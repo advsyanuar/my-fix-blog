@@ -14,7 +14,7 @@ export function SplitHeroPanel({
   stats,
 }: SplitHeroPanelProps) {
   return (
-    <section className="w-full md:w-[40%] border-r border-secondary-container bg-surface-container-lowest flex flex-col justify-center p-margin-lg relative blueprint-bg overflow-hidden">
+    <section className="w-full md:w-[40%] md:border-r max-md:border-b border-secondary-container bg-surface-container-lowest flex flex-col justify-center p-margin-lg max-md:p-margin-md relative blueprint-bg overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none from-primary-container/5 to-transparent" />
       <div className="relative z-10">
         <div className='flex w-full gap-2'>
@@ -25,7 +25,7 @@ export function SplitHeroPanel({
             {title}
           </span>
         </div>
-        <h1 className="font-display-lg display-bitrate text-[120px] leading-18 text-primary-container tracking-wider uppercase mb-4">
+        <h1 className="font-display-lg display-bitrate text-6xl md:text-[120px] max-md:leading-16 md:leading-18 text-primary-container tracking-wider uppercase mb-4">
           {title}
         </h1>
         <div className="grid grid-cols-1 gap-gutter bg-secondary-container border border-secondary-container">

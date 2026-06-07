@@ -2,7 +2,7 @@ import DotGrid from "./DotGrid";
 
 export function HeroSection() {
   return (
-    <section className="col-span-12 md:col-span-8 row-span-4 bg-surface-container-low p-margin-lg flex flex-col justify-end relative group overflow-hidden">
+    <section className="col-span-12 md:col-span-8 md:row-span-4 bg-surface-container-low p-margin-lg max-md:p-margin-md flex flex-col justify-end relative group overflow-hidden">
       <div className="absolute left-0 top-0" style={{ width: '100%', height: '100%' }}>
         <DotGrid
           dotSize={7}
@@ -21,10 +21,10 @@ export function HeroSection() {
       </div>
       <div className="z-10">
         <p className="display-stray">decentralized visual engine</p>
-        <h1 className="font-display-lg display-bitrate text-8xl text-primary-container mb-margin-sm leading-16 tracking-wider">
+        <h1 className="font-display-lg display-bitrate text-5xl md:text-8xl text-primary-container mb-margin-sm max-md:leading-12 md:leading-16 tracking-wider">
           DECENTRALIZED<br />VISUAL ENGINE
         </h1>
-        <p className="font-body-lg text-body-lg text-on-surface max-w-xl">
+        <p className="font-body-lg text-body-lg max-md:text-body-md text-on-surface max-w-xl">
           High-fidelity interface design for industrial automation and cybernetic ecosystems.
           Merging brutalist structures with luminous data density.
         </p>

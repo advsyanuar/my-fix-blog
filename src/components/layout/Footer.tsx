@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="fixed bottom-0 left-0 w-full z-50 flex justify-between items-stretch h-12 bg-surface-container-lowest border-t border-secondary-container">
       <DropdownMenu items={navSections} />
 
-      <div className="hidden lg:flex items-center h-full">
+      <div className="flex items-center h-full max-md:gap-0">
         <div className="flex items-center">
           <button
             onClick={goUp}
@@ -33,7 +33,7 @@ export function Footer() {
           <input
             type="text"
             placeholder="SEARCH..."
-            className="bg-surface-container-low border border-secondary-container text-base font-label-md text-primary px-8 py-3 w-72 focus:outline-none focus:border-primary-container transition-colors placeholder:opacity-30"
+            className="bg-surface-container-low border border-secondary-container text-base font-label-md text-primary px-8 py-3 w-28 md:w-72 focus:outline-none focus:border-primary-container transition-colors placeholder:opacity-30"
           />
         </div>
         <div className="flex items-center font-label-sm text-on-surface-variant">
@@ -43,7 +43,7 @@ export function Footer() {
             className={`p-3 border border-secondary-container transition-colors flex items-center gap-1 uppercase ${isFirst ? 'opacity-30 cursor-not-allowed text-on-surface-variant' : 'hover:text-primary'}`}
           >
             <span className="material-symbols-outlined text-[14px]">vertical_align_top</span>
-            Top
+            <span className="max-md:hidden">Top</span>
           </button>
           <button
             onClick={goEnd}
@@ -51,7 +51,7 @@ export function Footer() {
             className={`p-3 border border-secondary-container transition-colors flex items-center gap-1 uppercase ${isLast ? 'opacity-30 cursor-not-allowed text-on-surface-variant' : 'hover:text-primary'}`}
           >
             <span className="material-symbols-outlined text-[14px]">vertical_align_bottom</span>
-            End
+            <span className="max-md:hidden">End</span>
           </button>
         </div>
       </div>

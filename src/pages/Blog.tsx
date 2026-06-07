@@ -4,7 +4,7 @@ import { blogPosts } from '../data/blog-posts';
 
 export function Blog() {
   return (
-    <main className="h-[calc(100vh-48px)] flex w-full overflow-hidden">
+    <main className="max-md:min-h-screen max-md:flex-col max-md:overflow-y-auto md:h-[calc(100vh-48px)] flex w-full md:overflow-hidden">
       <SplitHeroPanel
         label="SYSTEM_LOGS"
         title="BLOGS"

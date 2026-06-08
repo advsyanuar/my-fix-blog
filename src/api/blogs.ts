@@ -1,20 +1,20 @@
 import { strapiFetch } from './client';
 import type {
-  StrapiProject,
+  StrapiBlog,
   StrapiCollectionResponse,
   StrapiSingleResponse,
 } from '../types/strapi';
 
-export function getBlogPosts(): Promise<StrapiCollectionResponse<StrapiProject>> {
-  return strapiFetch<StrapiCollectionResponse<StrapiProject>>(
-    '/api/posts?populate=cover_image',
+export function getBlogPosts(): Promise<StrapiCollectionResponse<StrapiBlog>> {
+  return strapiFetch<StrapiCollectionResponse<StrapiBlog>>(
+    '/api/blogs?populate=cover_image',
   );
 }
 
 export function getBlogPost(
   documentId: string,
-): Promise<StrapiSingleResponse<StrapiProject>> {
-  return strapiFetch<StrapiSingleResponse<StrapiProject>>(
-    `/api/posts/${documentId}?populate=cover_image`,
+): Promise<StrapiSingleResponse<StrapiBlog>> {
+  return strapiFetch<StrapiSingleResponse<StrapiBlog>>(
+    `/api/blogs/${documentId}?populate=cover_image`,
   );
 }

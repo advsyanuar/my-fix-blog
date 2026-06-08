@@ -32,6 +32,21 @@ export interface StrapiProject {
   publishedAt: string;
 }
 
+export interface StrapiBlog {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  category: string;
+  language: string;
+  content: string;
+  cover_image?: StrapiMedia | null;
+  tags?: string[];
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
 export interface StrapiCollectionResponse<T> {
   data: T[];
   meta: StrapiMeta;

@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { resolveStrapiMedia } from '../../api/client';
-import type { StrapiProject } from '../../types/strapi';
+import type { StrapiProject, StrapiBlog } from '../../types/strapi';
+
+type ViewerEntry = StrapiProject | StrapiBlog;
 
 interface ContentViewerProps {
-  entry: StrapiProject;
+  entry: ViewerEntry;
 }
 
 function formatDate(dateStr: string): string {
@@ -79,7 +81,6 @@ export function ContentViewer({ entry }: ContentViewerProps) {
     return () => clearInterval(id);
   }, [entry.content]);
 
-  const isProject = !!entry.date_start;
 
   return (
     <main className="flex-grow md:h-[calc(100vh-48px)] flex overflow-hidden w-full max-w-container-max mx-auto border-x border-secondary-container">
@@ -93,7 +94,7 @@ export function ContentViewer({ entry }: ContentViewerProps) {
             <div className="flex flex-col">
               <span className="font-label-sm text-label-sm text-outline uppercase">Entry_Date</span>
               <span className="font-label-md text-label-md text-primary">
-                {formatDate(isProject ? entry.date_start : entry.publishedAt)}
+                {formatDate('date_start' in entry && entry.date_start ? entry.date_start : entry.publishedAt)}
               </span>
             </div>
             <div className="flex flex-col">

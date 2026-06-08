@@ -6,7 +6,7 @@ export function resolveStrapiMedia(url: string): string {
 }
 
 function getToken(): string | null {
-  return localStorage.getItem('strapi_token');
+  return localStorage.getItem('strapi_token') ?? import.meta.env.VITE_STRAPI_TOKEN ?? null;
 }
 
 export class StrapiError extends Error {

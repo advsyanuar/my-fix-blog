@@ -48,6 +48,7 @@ export function Footer() {
           <button
             onClick={goEnd}
             disabled={isLast}
+            hidden
             className={`p-3 border border-secondary-container transition-colors flex items-center gap-1 uppercase ${isLast ? 'opacity-30 cursor-not-allowed text-on-surface-variant' : 'hover:text-primary'}`}
           >
             <span className="material-symbols-outlined text-[14px]">vertical_align_bottom</span>

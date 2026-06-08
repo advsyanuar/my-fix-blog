@@ -9,7 +9,7 @@ export function SidePanel() {
   return (
     <div
       ref={glowRef}
-      className="col-span-12 md:col-span-4 md:border-l border-secondary-container bg-surface-container flex flex-col cursor-pointer overflow-hidden md:row-span-6 h-full"
+      className="col-span-12 md:col-span-3 md:border-l border-secondary-container bg-surface-container flex flex-col cursor-pointer overflow-hidden h-full"
     >
       <div className="flex flex-col h-full">
         {navSections.map((section) => (

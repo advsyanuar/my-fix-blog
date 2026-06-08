@@ -15,7 +15,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/blogs/:id" element={<BlogView />} />
+          <Route path="/blogs/:documentId" element={<BlogView />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:documentId" element={<ProjectView />} />
           <Route path="/demos" element={<Demos />} />

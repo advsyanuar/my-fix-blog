@@ -2,7 +2,7 @@ import DotGrid from "./DotGrid";
 
 export function HeroSection() {
   return (
-    <section className="col-span-12 md:col-span-8 md:row-span-4 bg-surface-container-low p-margin-lg max-md:p-margin-md flex flex-col justify-end relative group overflow-hidden">
+    <section className="bg-surface-container-low p-margin-lg max-md:p-margin-md flex flex-col justify-end relative group overflow-hidden h-full">
       <div className="absolute left-0 top-0" style={{ width: '100%', height: '100%' }}>
         <DotGrid
           dotSize={7}

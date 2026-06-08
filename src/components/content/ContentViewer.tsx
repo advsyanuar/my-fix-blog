@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import { resolveStrapiMedia } from '../../api/client';
 import type { StrapiProject, StrapiBlog } from '../../types/strapi';
+import type { Components } from 'react-markdown';
 
 type ViewerEntry = StrapiProject | StrapiBlog;
 
@@ -26,16 +30,29 @@ function estimateReadingTime(text: string): string {
 }
 
 export function ContentViewer({ entry }: ContentViewerProps) {
-  const navigate = useNavigate();
   const location = useLocation();
-  const contentRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
   const [sections, setSections] = useState<{ id: string; label: string; number: number }[]>([]);
   const [activeSection, setActiveSection] = useState('');
+  const headingCounterRef = useRef(0);
+
+  const markdownComponents: Components = {
+    h2: ({ children, ...props }) => {
+      const index = headingCounterRef.current++;
+      const id = `section-${index}`;
+      return (
+        <h2 id={id} {...props}>
+          {children}
+        </h2>
+      );
+    },
+  };
 
   useEffect(() => {
-    if (!contentRef.current) return;
-    const h2s = contentRef.current.querySelectorAll('h2');
+    if (!headingRef.current) return;
+    headingCounterRef.current = 0;
+    const h2s = headingRef.current.querySelectorAll('h2');
     const extracted = Array.from(h2s).map((h2, i) => {
       const id = `section-${i}`;
       h2.id = id;
@@ -81,7 +98,6 @@ export function ContentViewer({ entry }: ContentViewerProps) {
     return () => clearInterval(id);
   }, [entry.content]);
 
-
   return (
     <main className="flex-grow md:h-[calc(100vh-48px)] flex overflow-hidden w-full max-w-container-max mx-auto border-x border-secondary-container">
       <article
@@ -97,6 +113,14 @@ export function ContentViewer({ entry }: ContentViewerProps) {
                 {formatDate('date_start' in entry && entry.date_start ? entry.date_start : entry.publishedAt)}
               </span>
             </div>
+            {'publishedAt' in entry && entry.publishedAt && (
+              <div className="flex flex-col">
+                <span className="font-label-sm text-label-sm text-outline uppercase">Published</span>
+                <span className="font-label-md text-label-md text-secondary">
+                  {formatDate(entry.publishedAt)}
+                </span>
+              </div>
+            )}
             <div className="flex flex-col">
               <span className="font-label-sm text-label-sm text-outline uppercase">Access_Level</span>
               <span className="font-label-md text-label-md text-primary">
@@ -132,35 +156,25 @@ export function ContentViewer({ entry }: ContentViewerProps) {
                 <span className="font-label-sm text-label-sm text-outline uppercase">
                   {entry.cover_image.alternativeText ?? `FIG: ${entry.title.toUpperCase().replace(/\s+/g, '_')}`}
                 </span>
-                <span className="font-label-sm text-label-sm text-primary">VERIFIED_SOURCE</span>
               </div>
             </div>
           )}
 
-          <div
-            ref={contentRef}
-            className="content-viewer"
-            dangerouslySetInnerHTML={{ __html: entry.content }}
-          />
-
-          <div className="flex gap-4 mt-16 mb-8">
-            <button
-              onClick={() => navigate(-1)}
-              className="bg-primary-container text-on-primary-container px-6 py-3 font-label-md text-label-md uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all flicker-on-hover"
+          <div ref={headingRef} className="content-viewer prose prose-invert max-w-none">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeHighlight]}
+              components={markdownComponents}
             >
-              RETURN_TO_INDEX
-            </button>
-            <button className="border border-primary-container text-primary-container px-6 py-3 font-label-md text-label-md uppercase tracking-widest hover:bg-primary-container/10 active:scale-[0.98] transition-all">
-              SHARE_LINK
-            </button>
+              {entry.content}
+            </ReactMarkdown>
           </div>
         </div>
       </article>
 
       <aside className="hidden lg:flex flex-col w-64 border-l border-secondary-container bg-surface-container-lowest shrink-0">
         <div className="p-4 border-b border-secondary-container bg-surface-container">
-          <span className="font-label-sm text-label-sm text-outline uppercase block mb-1">Navigation_System</span>
-          <h3 className="font-label-md text-label-md text-primary">DIRECTORY_INDEX</h3>
+          <span className="font-label-sm text-label-sm text-outline uppercase block mb-1">Table_of_contents</span>
         </div>
         <nav className="flex-grow flex flex-col pt-4" id="toc">
           {sections.map((s) => (

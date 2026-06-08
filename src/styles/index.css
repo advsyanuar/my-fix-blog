@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "highlight.js/styles/github-dark.css";
 
 @theme {
   --color-surface-variant: #1f374a;
@@ -185,59 +187,82 @@
   background: #00EEFF;
 }
 
+.content-viewer {
+  --tw-prose-body: #b9c9cb;
+  --tw-prose-headings: #00eeff;
+  --tw-prose-bold: #cde5fe;
+  --tw-prose-links: #00eeff;
+  --tw-prose-code: #00eeff;
+  --tw-prose-pre-bg: #000f1d;
+  --tw-prose-quotes: #d7fbff;
+  --tw-prose-quote-borders: #d7fbff;
+}
+
 .content-viewer h2 {
   font-family: "JetBrains Mono", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #00eeff;
   text-transform: uppercase;
-  margin-bottom: 16px;
   padding-left: 16px;
   border-left: 4px solid #00eeff;
   scroll-margin-top: 80px;
 }
 
-.content-viewer h2:not(:first-child) {
-  margin-top: 48px;
+.content-viewer h3,
+.content-viewer h4 {
+  font-family: "JetBrains Mono", sans-serif;
+  text-transform: uppercase;
 }
 
-.content-viewer p {
+.content-viewer p,
+.content-viewer li {
   font-family: "JetBrains Mono", monospace;
-  font-size: 14px;
-  line-height: 1.6;
-  font-weight: 400;
-  color: #b9c9cb;
-  margin-bottom: 24px;
-}
-
-.content-viewer p:first-of-type {
-  font-size: 16px;
-  color: #cde5fe;
 }
 
 .content-viewer blockquote {
   background: #031d30;
-  border-left: 4px solid #d7fbff;
   padding: 24px;
-  margin-bottom: 24px;
 }
 
-.content-viewer blockquote p {
-  font-size: 16px;
-  color: #d7fbff;
-  font-style: italic;
-  margin-bottom: 0;
+.content-viewer pre {
+  border: 1px solid #0a5063;
+  border-radius: 0;
 }
 
-@media (max-width: 767px) {
-  .content-viewer h2 {
-    font-size: 20px;
-  }
-  .content-viewer p {
-    font-size: 12px;
-  }
-  .content-viewer p:first-of-type {
-    font-size: 14px;
-  }
+.content-viewer pre code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.content-viewer img {
+  border: 1px solid #0a5063;
+  filter: grayscale(50%);
+  transition: filter 0.5s;
+}
+
+.content-viewer img:hover {
+  filter: grayscale(0%);
+}
+
+.content-viewer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.content-viewer table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.content-viewer th {
+  font-family: "JetBrains Mono", sans-serif;
+  text-transform: uppercase;
+  border: 1px solid #0a5063;
+  padding: 8px 12px;
+  background: #031d30;
+}
+
+.content-viewer td {
+  border: 1px solid #0a5063;
+  padding: 8px 12px;
+  font-family: "JetBrains Mono", monospace;
 }
